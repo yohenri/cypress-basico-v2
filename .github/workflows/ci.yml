@@ -7,20 +7,26 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3  # Atualize para v3
+        uses: actions/checkout@v3  # Atualizado para v3
 
-      # Instalar dependências NPM, cachear corretamente
-      # e executar todos os testes Cypress
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3  # Atualizado para v3
         with:
-          node-version: '20'
+          node-version: '20'  # Especificando Node.js 20
 
       - name: Install dependencies
         run: npm install
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v4  # Atualize para v4
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v4  # Atualizado para v4
         with:
           build: npm run build
           start: npm start
+
+      - name: Debug NPM and Node.js version
+        run: |
+          node -v
+          npm -v
+
+      - name: Run Cypress tests directly
+        run: npx cypress run
